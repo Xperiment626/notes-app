@@ -1,0 +1,32 @@
+{{#if all_notes}}
+<div class="row">
+    {{#each all_notes}}
+        <div class="col-md-3">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title d-flex justify-content-between align-items-center">
+                        {{title}} <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+                    </h4>
+                    <p>{{description}}</p>
+                    <form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-block btn-md" type="submit">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <br>
+        </div>
+    {{/each}}
+</div>
+{{else}}
+    <div id="no-notes-card" class="card border-secondary mb-3 mt-4" style="max-width: 18rem;">
+        <div class="card-header"><h2>Your notes are...</h2></div>
+        <div class="card-body text-secondary">
+            <h2 class="card-title">Whoops! There is no notes yet!</h2>
+            <br>
+            <a href="/notes/add" class="btn btn-success btn-block "><h4>Create one!</h4></a>
+        </div>
+    </div>
+{{/if}}
